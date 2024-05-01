@@ -1,89 +1,60 @@
-def lanska_povprecna_cena(cena):
-    return cena
+class Izdelek:
+    def __init__(self, ime, lanska_cena, donos):
+        self.ime = ime
+        self.lanska_cena = lanska_cena
+        self.donos = donos
 
-def prihodnja_cena(napoved_sursa, napoved_tujih):
-    return napoved_sursa + napoved_tujih / 2
+class Algoritem:
+    def __init__(self, izdelek1, izdelek2, ponder, napoved_sursa, napoved_tujih, skupno_zemljisce, budget):
+        self.izdelek1 = izdelek1
+        self.izdelek2 = izdelek2
+        self.ponder = ponder
+        self.napoved_sursa = napoved_sursa
+        self.napoved_tujih = napoved_tujih
+        self.skupno_zemljisce = skupno_zemljisce
+        self.budget = budget
 
-def pricakovano_povecanje_cen(cena_lani, cena_prihodnje):
-    return lanska_povprecna_cena(cena_lani) + cena_prihodnje / 2
+    def izracun(self):
+        # 1. Določi odstotke za oba produkta
+        odstotek1, odstotek2 = self.ponder, 100 - self.ponder
 
-def donos_posameznega_produkta(donos):
-    return donos
+        # 2. Izračunaj prihodnjo ceno za vsako vrsto pšenice
+        prihodnja_cena1 = self.napoved_sursa + self.napoved_tujih / 2
+        prihodnja_cena2 = self.napoved_sursa + self.napoved_tujih / 2
 
-def ponder(psenica1, psenica2):
-    try:
-        odstotek1 = float(input(f"Vnesite odstotek za '{psenica1}': "))
-        if odstotek1 < 0 or odstotek1 > 100:
-            print("Vnesite veljaven odstotek med 0 in 100.")
-            return None
-        odstotek2 = 100 - odstotek1
-        print(f"{odstotek1}% za {psenica1} in {odstotek2}% za {psenica2}.")
-        return odstotek1, odstotek2
-    except ValueError:
-        print("Prosimo vnesite številčno vrednost za odstotek.")
-        return None
+        # 3. Izračunaj pričakovano povečanje cen za obe vrsti pšenice
+        povecanje_cen1 = self.izdelek1.lanska_cena + prihodnja_cena1 / 2
+        povecanje_cen2 = self.izdelek2.lanska_cena + prihodnja_cena2 / 2
 
-def skupna_zemljišča(velikost_zemljišč):
-    return velikost_zemljišč
+        # 4. Določi alocirane deleže njiv na podlagi odstotkov in donosa
+        alocirani_delez1 = (odstotek1 / 100) * (self.skupno_zemljisce / self.izdelek1.donos)
+        alocirani_delez2 = (odstotek2 / 100) * (self.skupno_zemljisce / self.izdelek2.donos)
 
-def količina_subvencij(budget):
-    return budget
+        # 5. Izračunaj skupno vrednost subvencije za vsak produkt
+        subvencija1 = self.budget * (alocirani_delez1 / self.skupno_zemljisce) * povecanje_cen1
+        subvencija2 = self.budget * (alocirani_delez2 / self.skupno_zemljisce) * povecanje_cen2
 
+        # 6. Izračunaj velikost subvencije na hektar za vsak produkt
+        velikost_subvencije_na_hektar1 = subvencija1 / alocirani_delez1
+        velikost_subvencije_na_hektar2 = subvencija2 / alocirani_delez2
 
-
-def algoritem(lanska_cena_psenica1, lanska_cena_psenica2, napoved_sursa, napoved_tujih, donos_psenica1, donos_psenica2, skupno_zemljisce, budget):
-    # 1. Določi odstotke za oba produkta
-    psenica1, psenica2 = 'psenica1', 'psenica2'
-    odstotki = ponder(psenica1, psenica2)
-    if not odstotki:
-        return "Algoritem ni izvedel izračuna zaradi neveljavnega vnosa."
-
-    odstotek1, odstotek2 = odstotki
-
-    # 2. Izračunaj prihodnjo ceno za vsako vrsto pšenice
-    prihodnja_cena1 = prihodnja_cena(napoved_sursa, napoved_tujih)
-    prihodnja_cena2 = prihodnja_cena(napoved_sursa, napoved_tujih)
-
-    # 3. Izračunaj pričakovano povečanje cen za obe vrsti pšenice
-    povecanje_cen1 = pricakovano_povecanje_cen(lanska_cena_psenica1, prihodnja_cena1)
-    povecanje_cen2 = pricakovano_povecanje_cen(lanska_cena_psenica2, prihodnja_cena2)
-
-    # 4. Določi alocirane deleže njiv na podlagi odstotkov in donosa
-    alocirani_delez1 = (odstotek1 / 100) * (skupno_zemljisce / donos_psenica1)
-    alocirani_delez2 = (odstotek2 / 100) * (skupno_zemljisce / donos_psenica2)
-
-    # 5. Izračunaj skupno vrednost subvencije za vsak produkt
-    subvencija1 = budget * (alocirani_delez1 / skupno_zemljisce) * povecanje_cen1
-    subvencija2 = budget * (alocirani_delez2 / skupno_zemljisce) * povecanje_cen2
-
-    # 6. Izračunaj velikost subvencije na hektar za vsak produkt
-    velikost_subvencije_na_hektar1 = subvencija1 / alocirani_delez1
-    velikost_subvencije_na_hektar2 = subvencija2 / alocirani_delez2
-
-    return {
-        'prihodnja_cena_psenica1': prihodnja_cena1,
-        'prihodnja_cena_psenica2': prihodnja_cena2,
-        'povecanje_cen_psenica1': povecanje_cen1,
-        'povecanje_cen_psenica2': povecanje_cen2,
-        'subvencija_psenica1': subvencija1,
-        'subvencija_psenica2': subvencija2,
-        'velikost_subvencije_na_hektar1': velikost_subvencije_na_hektar1,
-        'velikost_subvencije_na_hektar2': velikost_subvencije_na_hektar2
-    }
-
-
-
+        return {
+            'prihodnja_cena_psenica1': prihodnja_cena1,
+            'prihodnja_cena_psenica2': prihodnja_cena2,
+            'povecanje_cen_psenica1': povecanje_cen1,
+            'povecanje_cen_psenica2': povecanje_cen2,
+            'subvencija_psenica1': subvencija1,
+            'subvencija_psenica2': subvencija2,
+            'velikost_subvencije_na_hektar1': velikost_subvencije_na_hektar1,
+            'velikost_subvencije_na_hektar2': velikost_subvencije_na_hektar2
+        }
 
 
 if __name__ == "__main__":
-    rezultat = algoritem(
-        lanska_cena_psenica1=2.00, # Primer lanske cene za psenica1
-        lanska_cena_psenica2=1.90, # Primer lanske cene za psenica2
-        napoved_sursa=1.10,  # Primer napovedi cene SURS
-        napoved_tujih=0.05,  # Primer tuje napovedi
-        donos_psenica1=500,  # Primer donosa za psenica1
-        donos_psenica2=450,  # Primer donosa za psenica2
-        skupno_zemljisce=1000,  # Skupna velikost zemljišč v hektarih
-        budget=100000  # Proračun za subvencije
-    )
-    print(rezultat)
+    izdelek1 = Izdelek('psenica', 2.00, 500)
+    izdelek2 = Izdelek('koruza', 1.90, 450)
+    a = Algoritem(izdelek1, izdelek2, 75, 1.10, .05, 1000, 100000)
+    rezultat = a.izracun()
+    
+    for ključ, vrednost in rezultat.items():
+        print(ključ, vrednost)
