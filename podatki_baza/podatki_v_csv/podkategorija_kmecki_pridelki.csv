@@ -1,0 +1,73 @@
+podkategorija_id;Naziv;Meritev_na_enoto;kategorija_id
+1;Belo zelje;ha/t;5
+2;Ohrovt;ha/t;5
+3;Cvetaèa in brokoli;ha/t;5
+4;Kitajski kapus;ha/t;5
+5;Solata;ha/t;5
+6;Endivija;ha/t;5
+7;Radiè;ha/t;5
+8;Špinaèa;ha/t;5
+9;Korenèek;ha/t;5
+10;Rdeèa pesa;ha/t;5
+11;Paradižnik;ha/t;5
+12;Paprika;ha/t;5
+13;Kumare - za vlaganje;ha/t;5
+14;Kumare - solatne;ha/t;5
+15;Èebula;ha/t;5
+16;Èesen;ha/t;5
+17;Por;ha/t;5
+18;Fižol za stroèje - visoki;ha/t;5
+19;Fižol za stroèje - nizki;ha/t;5
+20;Grah;ha/t;5
+21;Motovilec;ha/t;5
+22;Buèke;ha/t;5
+23;Šparglji (Beluši);ha/t;5
+24;Druge zelenjadnice;ha/t;5
+25;Pšenica in pira - Pšenica;ha/t;1
+26;Pšenica in pira - Pira;ha/t;1
+27;Rž in soržica;ha/t;1
+28;Jeèmen;ha/t;1
+29;Oves;ha/t;1
+30;Koruza za zrnje;ha/t;1
+31;Tritikala;ha/t;1
+32;Druga žita - Proso;ha/t;1
+33;Druga žita - Ajda;ha/t;1
+34;Druga žita - druga (sirek, mohor, bar, ptièje seme);ha/t;1
+35;Krmni grah;ha/t;1
+36;Fižol za zrnje;ha/t;1
+37;Druge suhe stroènice (krmni bob, mešanice stroènic in žit, èièerika);ha/t;1
+38;Krompir;ha/t;1
+39;Sladkorna pesa;ha/t;1
+40;Krmne korenovke (pesa, koleraba, korenje);ha/t;1
+41;Druge krmne korenovke;ha/t;1
+42;Oljna ogršèica in repica;ha/t;1
+43;Sonènice;ha/t;1
+44;Soja;ha/t;1
+45;Buèe za olje;ha/t;1
+46;Druge oljnice;ha/t;1
+47;Hmelj;ha/t;1
+48;Zaèimbe, dišavnice in zdravilne rastline;ha/t;1
+49;Silažna koruza;ha/t;1
+50;Druga zel. krma, enol. posev.;ha/t;1
+51;Detelje in lucerna;ha/t;1
+52;Detelja;ha/t;1
+53;Lucerna;ha/t;1
+54;Trave in travne mešanice;ha/t;1
+55;Travno deteljne in deteljno travne mešanice;ha/t;1
+56;Jabolka;ha/t;8
+57;Hruške;ha/t;8
+58;Breskve in nektarine;ha/t;8
+59;Marelice;ha/t;8
+60;Èešnje in višnje - èešnje;ha/t;8
+61;Èešnje in višnje - višnje;ha/t;8
+62;Èešplje in slive;ha/t;8
+63;Orehi;ha/t;8
+64;Drugo sadje, brez jagodièja, drugo;ha/t;8
+65;Oljke;ha/t;8
+66;Govedo;žival;2
+67;Prašièi;žival;2
+68;Perutnina;žival;2
+69;Ovce;žival;2
+70;Koze;žival;2
+71;Jagode;ha/t;8
+72;Drugo jagodièje;ha/t;8

@@ -1,0 +1,43 @@
+To je baza ki vključuje tabele :
+
+leta (leto_id,naziv)
+kategorija_kmečki_pridelki(kategorija_id,naziv,željena_stopnja_samozadostnosti)
+podkategorija_kmečki_pridelki (podkategorija_id,Naziv,Meritev_na_enoto,kategorija_id)
+podkategorija_kmečki_pridelki_leto (leto_id,podkategorija_id,Meritev_na_enoto,Meritev)
+------------------------------------------------------------------------------------
+
+Koda ki je ustvarila tabele je čisto na koncu dokumenta
+predlagam encoding encoding='windows-1250'
+-tale dokumentacije je se work in progres bom nadeljeval jutr
+
+
+
+------------------------------------------------------
+CREATE TABLE leta (
+    leto_id INTEGER,
+    naziv INTEGER
+);
+
+CREATE TABLE kategorija_kmečki_pridelki (
+    kategorija_id INTEGER,
+    Naziv VARCHAR(100),
+    Željena_stopnja_samozadostnosti integer
+);
+
+CREATE TABLE podkategorija_kmečki_pridelki (
+    podkategorija_id INTEGER PRIMARY KEY,
+    Naziv VARCHAR(100),
+    Meritev_na_enoto VARCHAR(50),
+    kategorija_id INTEGER,
+    FOREIGN KEY (kategorija_id) REFERENCES kategorija(kategorija_id)
+);
+CREATE TABLE podkategorija_kmečki_pridelki_leto (
+    leto_id INTEGER,
+    podkategorija_id INTEGER,
+    Meritev_na_enoto DECIMAL(10, 2),
+    Meritev INTEGER,
+    FOREIGN KEY (leto_id) REFERENCES leta(leto_id),
+    FOREIGN KEY (podkategorija_id) REFERENCES podkategorija_kmečki_pridelki(podkategorija_id),
+    PRIMARY KEY (leto_id, podkategorija_id)
+);
+
