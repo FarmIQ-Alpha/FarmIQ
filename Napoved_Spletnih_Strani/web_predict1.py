@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 
+
 class WebScraper1():
     def __init__(self):
         # kolicina v 50 t

@@ -5,6 +5,7 @@ import requests
 class WebScraper():
     def __init__(self):
         # per bushelk oziroma je lahko * .4 za pretvorbo
+        self.value = .3865
         self.url = 'https://walletinvestor.com/commodity-forecast/wheat-prediction'
         self.target_class = 'kv-grid-table table table-hover table-bordered table-striped table-condensed kv-table-wrap'
 
@@ -73,7 +74,7 @@ class WebScraper():
             data['Date'] = data['Date'].astype(str)
             subset_data = data[data['Date'].str.contains(str(target_year))]
 
-            average = subset_data[option].astype(float).mean()
+            average = subset_data[option].astype(float).mean() * self.value
 
             print(f"Average {option} for {target_year}: {average:.2f}")
             return average
