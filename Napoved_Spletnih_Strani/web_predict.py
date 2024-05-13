@@ -4,6 +4,7 @@ import requests
 
 class WebScraper():
     def __init__(self):
+        # per bushelk oziroma je lahko * .4 za pretvorbo
         self.url = 'https://walletinvestor.com/commodity-forecast/wheat-prediction'
         self.target_class = 'kv-grid-table table table-hover table-bordered table-striped table-condensed kv-table-wrap'
 

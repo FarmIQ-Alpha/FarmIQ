@@ -4,6 +4,7 @@ import requests
 
 class WebScraper1():
     def __init__(self):
+        # kolicina v 50 t
         self.url = 'https://www.proplanta.de/Markt-und-Preis/MATIF-Weizen/'
         self.target_class = 'FARBE_LISTE_KOPF_DUNKEL_MITTE'
 
@@ -66,7 +67,7 @@ class WebScraper1():
         Args:
             data (DataFrame): The data
             target_year (int): Targeted year, default 2025
-            option (string): Desired field, defualt is Opeing price
+            option (string): Desired field, defualt is Schluss_Kurs
 
         Returns:
             float: average of desired field
@@ -95,7 +96,7 @@ class WebScraper1():
 
         Args:
             target_year (int): Targeted year, default 2025
-            option (string): Desired field, defualt is Opeing price
+            option (string): Desired field, defualt is Schluss_Kurs
 
         Returns:
             float: average of desired field
