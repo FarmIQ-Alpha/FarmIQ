@@ -51,13 +51,13 @@ class WebScraper():
 
         return pd.DataFrame(data, columns=['Date', 'Opening price', 'Closing price', 'Minimum price', 'Maximum price', 'Change'])
 
-    def get_prediction(self, data, target_year=2024, option='Opening price'):
+    def get_prediction(self, data, target_year=2025, option='Opening price'):
         """
         Gets average of the desired field. All the fields are Opening price, Closing price, Minimum price, Maximum price, Change
 
         Args:
             data (DataFrame): The data
-            target_year (int): Targeted year, default 2024
+            target_year (int): Targeted year, default 2025
             option (string): Desired field, defualt is Opeing price
 
         Returns:
@@ -81,12 +81,12 @@ class WebScraper():
         except Exception as e:
             raise RuntimeError(f"Error: {e}")
 
-    def run(self, target_year=2024, option='Opening price'):
+    def run(self, target_year=2025, option='Opening price'):
         """
         Gets prediction of the desired field. All the fields are Opening price, Closing price, Minimum price, Maximum price, Change
 
         Args:
-            target_year (int): Targeted year, default 2024
+            target_year (int): Targeted year, default 2025
             option (string): Desired field, defualt is Opeing price
 
         Returns:
