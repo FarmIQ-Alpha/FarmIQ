@@ -34,6 +34,16 @@ def razdeli_proračun (proracun):
             WHERE pkl.leto_id=2022
             ;
             ''')
+    zahtevana_površina=0
+    skupna_količina_kmetiskih_zemljišč_v_sloveniji=595000
+    for int in potrebna_površina:
+        zahtevana_površina=zahtevana_površina+int[1]
+
+    if zahtevana_površina > skupna_količina_kmetiskih_zemljišč_v_sloveniji:
+        napaka=f"Napaka izbrali ste željene stopnje samozadostnosti, ki presega kapacitete slovenkega kmetistva želeli ste porabiti {a} hektarjev trenutno pa jih je registriranih le 595 000"
+
+        return napaka
+
     return(potrebna_površina)
 
 print(razdeli_proračun(10000000))
