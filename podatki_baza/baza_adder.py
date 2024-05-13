@@ -6,7 +6,7 @@ conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 
 # Path to your CSV file
-csv_file_path = 'podatki_v_csv/leto_podkategorija.csv'
+csv_file_path = 'leto_kategorija.csv'
 
 # Open the CSV file
 with open(csv_file_path, newline='', encoding='windows-1250') as csvfile:
@@ -15,7 +15,7 @@ with open(csv_file_path, newline='', encoding='windows-1250') as csvfile:
     # Skip the header row if your CSV has headers
     next(csvreader)
 
-    insert_query = 'INSERT INTO podkategorija_kmečki_pridelki_leto (leto_id,podkategorija_id,Meritev_na_enoto,Meritev) VALUES (?,?,?,?)'
+    insert_query = 'INSERT INTO kategorija_leto (leto_id,kategorija_id,Stopnja_samozadostnosti) VALUES (?,?,?)'
 
 
 

@@ -10,8 +10,6 @@ Koda ki je ustvarila tabele je čisto na koncu dokumenta
 predlagam encoding encoding='windows-1250'
 -tale dokumentacije je se work in progres bom nadeljeval jutr
 
-
-
 ------------------------------------------------------
 CREATE TABLE leta (
     leto_id INTEGER,
@@ -40,4 +38,12 @@ CREATE TABLE podkategorija_kmečki_pridelki_leto (
     FOREIGN KEY (podkategorija_id) REFERENCES podkategorija_kmečki_pridelki(podkategorija_id),
     PRIMARY KEY (leto_id, podkategorija_id)
 );
+
+CREATE TABLE kategorija_leto (
+    leto_id INTEGER,
+    kategorija_id INTEGER,
+    Stopnja_samozadostnosti DECIMAL(10, 2),
+    FOREIGN KEY (leto_id) REFERENCES leta(leto_id),
+    FOREIGN KEY (kategorija_id) REFERENCES kategorija_kmečki_pridelki(kategorija_id),
+    PRIMARY KEY (leto_id, kategorija_id));
 

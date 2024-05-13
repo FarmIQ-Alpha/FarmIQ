@@ -16,7 +16,7 @@ class Algoritem:
 
     def izracun(self):
         # 1. Določi odstotke za oba produkta
-        odstotek1, odstotek2 = self.ponder, 100 - self.ponder
+        odstotek1, odstote0k2 = self.ponder, 100 - self.ponder
 
         # 2. Izračunaj prihodnjo ceno za vsako vrsto pšenice
         prihodnja_cena1 = self.napoved_sursa + self.napoved_tujih / 2
