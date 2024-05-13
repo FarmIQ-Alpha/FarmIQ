@@ -1,8 +1,17 @@
 from Napoved_Spletnih_Strani.web_predict import WebScraper
+from Napoved_Spletnih_Strani.web_predict1 import WebScraper1
 from V1_subvencije_razdeljevalnik.algoritem_napoved import Izdelek, Algoritem
+from ARIMA_models.Napoved_cene_stari_podatki2 import PredictPrices
+from ARIMA_models.Napoved_kolicine_stari_podatki1 import PredictQuantity
 
 print('WebScraper:')
 webscraper = WebScraper()
+webscraper.run()
+
+print('-' * 30)
+
+print('WebScraper1:')
+webscraper = WebScraper1()
 webscraper.run()
 
 print('-' * 30)
@@ -15,4 +24,15 @@ rezultat = a.izracun()
 
 for ključ, vrednost in rezultat.items():
     print(ključ, vrednost)
+
 print('-' * 30)
+
+print("Forecast data prices:")
+forecasts = PredictPrices()
+print(forecasts.run())
+
+print('-' * 30)
+
+print("Forecast data quantity:")
+forecasts = PredictQuantity()
+print(forecasts.run())

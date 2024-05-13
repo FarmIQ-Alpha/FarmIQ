@@ -2,12 +2,12 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 
-class WebScraper():
+
+class WebScraper1():
     def __init__(self):
-        # per bushelk oziroma je lahko * .4 za pretvorbo
-        self.value = .3865
-        self.url = 'https://walletinvestor.com/commodity-forecast/wheat-prediction'
-        self.target_class = 'kv-grid-table table table-hover table-bordered table-striped table-condensed kv-table-wrap'
+        # kolicina v 50 t
+        self.url = 'https://www.proplanta.de/Markt-und-Preis/MATIF-Weizen/'
+        self.target_class = 'FARBE_LISTE_KOPF_DUNKEL_MITTE'
 
     def get_table_from_website(self):
         """
@@ -39,42 +39,50 @@ class WebScraper():
         for row in table.find_all('tr'):
             cells = row.find_all(['th', 'td'])
 
-            if len(cells) < 7 or "Date" in cells[1].get_text(strip=True):
+            if "Kontrakt" in cells[0].get_text(strip=True):
                 continue
 
-            date = cells[1].get_text(strip=True)
-            opening_price = float(cells[2].get_text(strip=True).split(':')[1])
-            closing_price = float(cells[3].get_text(strip=True).split(':')[1])
-            minimum_price = float(cells[4].get_text(strip=True).split(':')[1])
-            maximum_price = float(cells[5].get_text(strip=True).split(':')[1])
-            change = float(cells[6].get_text(strip=True).split(':')[1].split()[0])
+            kontrakt = cells[0].get_text(strip=True)
+            schluss_Kurs = cells[1].get_text(strip=True)
+            aktueller_Kurs = cells[3].get_text(strip=True)
+            eröffnung = cells[5].get_text(strip=True)
+            hoch = cells[6].get_text(strip=True)
+            tief = cells[7].get_text(strip=True)
+            geld = cells[12].get_text(strip=True)
 
-            data.append([date, opening_price, closing_price, minimum_price, maximum_price, change])
+            schluss_Kurs = float(schluss_Kurs) if schluss_Kurs not in ['-', ''] else 0.0
+            aktueller_Kurs = float(aktueller_Kurs) if aktueller_Kurs not in ['-', ''] else 0.0
+            eröffnung = float(eröffnung) if eröffnung not in ['-', ''] else 0.0
+            hoch = float(hoch) if hoch not in ['-', ''] else 0.0
+            tief = float(tief) if tief not in ['-', ''] else 0.0
+            geld = float(geld) if geld not in ['-', ''] else 0.0
 
-        return pd.DataFrame(data, columns=['Date', 'Opening price', 'Closing price', 'Minimum price', 'Maximum price', 'Change'])
+            data.append([kontrakt, schluss_Kurs, aktueller_Kurs, eröffnung, hoch, tief, geld])
 
-    def get_prediction(self, data, target_year=2025, option='Opening price'):
+        return pd.DataFrame(data, columns=['Kontrakt', 'Schluss_Kurs', 'Aktueller_Kurs', 'Eröffnung', 'Hoch', 'Tief', 'Geld'])
+
+    def get_prediction(self, data, target_year=2025, option='Schluss_Kurs'):
         """
         Gets average of the desired field. All the fields are Opening price, Closing price, Minimum price, Maximum price, Change
 
         Args:
             data (DataFrame): The data
             target_year (int): Targeted year, default 2025
-            option (string): Desired field, defualt is Opeing price
+            option (string): Desired field, defualt is Schluss_Kurs
 
         Returns:
             float: average of desired field
         """
-        available_options = ['Date', 'Opening price', 'Closing price', 'Minimum price', 'Maximum price', 'Change']
+        available_options = ['Kontrakt', 'Schluss_Kurs', 'Aktueller_Kurs', 'Eröffnung', 'Hoch', 'Tief', 'Geld']
         
         if option not in available_options:
             raise ValueError(f"Invalid option '{option}' provided. Available options: {', '.join(available_options)}")
 
         try:
-            data['Date'] = data['Date'].astype(str)
-            subset_data = data[data['Date'].str.contains(str(target_year))]
+            data['Kontrakt'] = data['Kontrakt'].astype(str)
+            subset_data = data[data['Kontrakt'].str.contains(str(target_year))]
 
-            average = subset_data[option].astype(float).mean() * self.value
+            average = subset_data[option].astype(float).mean()
 
             print(f"Average {option} for {target_year}: {average:.2f}")
             return average
@@ -83,13 +91,13 @@ class WebScraper():
         except Exception as e:
             raise RuntimeError(f"Error: {e}")
 
-    def run(self, target_year=2025, option='Opening price'):
+    def run(self, target_year=2025, option='Schluss_Kurs'):
         """
         Gets prediction of the desired field. All the fields are Opening price, Closing price, Minimum price, Maximum price, Change
 
         Args:
             target_year (int): Targeted year, default 2025
-            option (string): Desired field, defualt is Opeing price
+            option (string): Desired field, defualt is Schluss_Kurs
 
         Returns:
             float: average of desired field
@@ -99,5 +107,5 @@ class WebScraper():
         self.get_prediction(data, target_year, option)
 
 if __name__ == '__main__':
-    webscraper = WebScraper()
+    webscraper = WebScraper1()
     webscraper.run()
