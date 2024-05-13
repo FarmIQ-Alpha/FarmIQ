@@ -1,3 +1,5 @@
 from database import *
 
-database('''UPDATE kategorija_kmečki_pridelki  set Željena_stopnja_samozadostnosti= 1''')
+print(database_get('delete from podkategorija_kmečki_pridelki_leto where podkategorija_id in (SELECT podkategorija_id FROM podkategorija_kmečki_pridelki WHERE kategorija_id=2'))
+
+

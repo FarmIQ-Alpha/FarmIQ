@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 
 def database(query):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('podatki_baza/database.db')
     cur = conn.cursor()
     cur.execute(query)
     conn.commit()
@@ -10,7 +10,7 @@ def database(query):
 
 
 def database_get(query):
-    conn = sqlite3.connect('database.db')
+    conn = sqlite3.connect('podatki_baza/database.db')
     cursor = conn.cursor()
     try:
         cursor.execute(query)
@@ -35,5 +35,4 @@ def database_canculator(kategorija):
     print(sum_kategory)
     temp = database_get(f'SELECT naziv, SUM(Meritev)/{float(sum_kategory[0][0])} AS total_meritev FROM podkategorija_kmečki_pridelki_leto pkl JOIN podkategorija_kmečki_pridelki pk ON pkl.podkategorija_id = pk.podkategorija_id  WHERE leto_id >= strftime("%Y", "now") - 2 GROUP BY pk.podkategorija_id ORDER BY pk.podkategorija_id')
     print(temp)
-
 

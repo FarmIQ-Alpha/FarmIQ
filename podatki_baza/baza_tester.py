@@ -7,7 +7,7 @@ conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 
 # SQL query to fetch all data from the table named 'table'
-sql_query = "SELECT * FROM kategorija_kmečki_pridelki "
+sql_query = "SELECT * FROM leta"
 
 try:
     # Execute the SQL command

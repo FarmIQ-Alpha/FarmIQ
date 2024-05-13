@@ -43,6 +43,11 @@ class PredictPrices:
 
 if __name__ == '__main__':
     # Output the forecast data
+
+    import os
+    print(os.getcwd())
+
+
     print("Forecast data:")
     forecasts = PredictPrices()
     print(forecasts.run())
