@@ -106,11 +106,12 @@ $res_Subsidy = $user['Subsidy']; // Assuming there is a Subsidy field in the use
                         <?php
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $cartItems = json_decode($_POST['cartItems'], true);
-                            $output = exec("python3 FarmIQ_master/web_predict1.py");
+                            $output = exec("python3 /Applications/XAMPP/xamppfiles/htdocs/FarmIQ-1/farmiq_master/web_predict1.py");
                             $variables = json_decode($output, true);
-
+                            var_dump($variables);
                             $x = $variables['hello'];
                             var_dump($x);
+                            var_dump($output);
                         
 
                             if (!empty($cartItems)) {

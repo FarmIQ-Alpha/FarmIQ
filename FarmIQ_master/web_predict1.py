@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 from time import sleep
+impo
 
 
 
@@ -109,9 +110,8 @@ class WebScraper1():
         return self.get_prediction(data, target_year, option)
 
 if __name__ == '__main__':
-    sleep(5)
+    #sleep(5)
     webscraper = WebScraper1()
-    print( webscraper.run())
     import json
     data = {"hello": webscraper.run()}
     print(json.dumps(data))
