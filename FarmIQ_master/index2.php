@@ -57,7 +57,7 @@
                 <div class="field">
                     
                     <input type="submit" class="btn" name="submit" value="Prijava" required>
-                    <input type="submit" class="btn" name="submit" value="Prijava z SIPASS" required>
+                    <input type="submit" class="btn" name="submit" value="Prijava s SIPASS" required>
 
                 </div>
                 <div class="links">
