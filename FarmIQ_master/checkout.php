@@ -106,10 +106,15 @@ $res_Subsidy = $user['Subsidy']; // Assuming there is a Subsidy field in the use
                         <?php
                         if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $cartItems = json_decode($_POST['cartItems'], true);
+                            $output = exec("python3 /Applications/XAMPP/xamppfiles/htdocs/FarmIQ-1/farmiq_master/web_predict1.py");
+                            $variables = json_decode($output, true);
+                            var_dump($variables);
+                            $x = $variables['hello'];
+                            var_dump($x);
+                            var_dump($output);
+                        
 
                             if (!empty($cartItems)) {
-                                $output = exec("python web_predict1.py");
-                                echo output;
                                 echo "<h3>Izbrane poljščine:</h3>";
                                 echo "<form id='checkoutForm' action='koncaj.html' method='POST' onsubmit='return validateForm()'>";
                                 echo "<table class='table'>";
