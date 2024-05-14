@@ -84,7 +84,7 @@ class WebScraper1():
 
             average = subset_data[option].astype(float).mean()
 
-            print(f"Average {option} for {target_year}: {average:.2f}")
+            # print(f"Average {option} for {target_year}: {average:.2f}")
             return average
         except KeyError:
             raise ValueError("Invalid option provided.")
@@ -104,8 +104,9 @@ class WebScraper1():
         """
         table = self.get_table_from_website()
         data = self.get_data_from_table(table)
-        self.get_prediction(data, target_year, option)
+        return self.get_prediction(data, target_year, option)
 
 if __name__ == '__main__':
     webscraper = WebScraper1()
-    webscraper.run()
+    x = webscraper.run()
+    print(x)
